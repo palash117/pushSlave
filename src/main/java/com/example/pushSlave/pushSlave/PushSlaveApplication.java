@@ -19,9 +19,11 @@ public class PushSlaveApplication {
 
 		try {
 			String ip = null;
+			String name = null;
 			try(final DatagramSocket socket = new DatagramSocket()){
 				socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
 				ip = socket.getLocalAddress().getHostAddress();
+				name = InetAddress.getLocalHost().getHostName();
 			} catch (SocketException e) {
 				e.printStackTrace();
 			}
@@ -31,7 +33,7 @@ public class PushSlaveApplication {
 			System.out.println(ip);
 			Consumer consumer = new Consumer();
 			consumer.setIp(ip.toString());
-			consumer.setName("pc");
+			consumer.setName(name);
 
 			System.out.println(RestUtil.postConsumer("192.168.0.111", consumer));
 		} catch (UnknownHostException ex) {
