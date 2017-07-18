@@ -1,11 +1,13 @@
 package com.example.pushSlave.pushSlave;
 
 import com.example.pushSlave.pushSlave.Request.Consumer;
+import com.example.pushSlave.pushSlave.pushConstants.PushConstants;
 import com.example.pushSlave.pushSlave.pushUtil.RestUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
@@ -17,6 +19,7 @@ public class PushSlaveApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PushSlaveApplication.class, args);
 
+//		runtimeTest();
 		try {
 			String ip = null;
 			String name = null;
@@ -40,5 +43,22 @@ public class PushSlaveApplication {
 			ex.printStackTrace();
 		}
 
+	}
+
+	public static void runtimeTest(){
+		try {
+			String os = System.getProperty("os.name");
+			if(os.toUpperCase().contains("WINDOWS")){
+				Runtime.getRuntime().exec(new String[] {"cmd.exe", "/c"," start chrome"+" www.youtube.com"});
+
+			}
+			else {
+				Runtime.getRuntime().exec(new String[]{"google-chrome", "youtube.com"});
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+
+		}
 	}
 }

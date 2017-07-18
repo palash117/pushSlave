@@ -25,8 +25,8 @@ public class BasicService implements Servicable {
 
             try {
                 String os = System.getProperty("os.name");
-                if(os.equalsIgnoreCase("WINDOWS")){
-                    Runtime.getRuntime().exec(new String[] { "start chrome", event.getLink()});
+                if(os.toUpperCase().contains("WINDOWS")){
+                    Runtime.getRuntime().exec(new String[] {"cmd.exe", "/c"," start chrome"+event.getLink()});
                 }
                 else {
                     Runtime.getRuntime().exec(new String[]{"google-chrome", event.getLink()});
