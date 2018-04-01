@@ -30,10 +30,6 @@ public class BasicEvent implements Eventable {
 
     public String link;
 
-    @Override
-    public Object process() {
-        return null;
-    }
 
     public String getDestination() {
         return destination;

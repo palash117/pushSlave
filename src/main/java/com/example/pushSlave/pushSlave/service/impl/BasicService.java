@@ -1,15 +1,15 @@
 package com.example.pushSlave.pushSlave.service.impl;
 
+import com.example.pushSlave.pushSlave.processor.processorImpl.EventProessor;
 import com.example.pushSlave.pushSlave.event.impl.BasicEvent;
+import com.example.pushSlave.pushSlave.event.impl.VolumeEvent;
 import com.example.pushSlave.pushSlave.event.type.EventType;
 import com.example.pushSlave.pushSlave.pushConstants.PushConstants;
 import com.example.pushSlave.pushSlave.service.Servicable;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.Set;
 
 /**
  * Created by palash on 11/7/17.
@@ -17,6 +17,8 @@ import java.util.Set;
 @Service
 public class BasicService implements Servicable {
 
+    @Autowired
+    EventProessor eventProessor;
 
     @Override
     public String processEvent(BasicEvent event) {
@@ -44,9 +46,18 @@ public class BasicService implements Servicable {
 
     }
 
+    @Override
+    public String changeVolume(VolumeEvent volumeEvent) {
+        return  eventProessor.increaseVolume(
+                volumeEvent
+        ) ;
+    }
+
     private boolean checkLinkForYoutube(String link) {
 
         return true;
 
     }
+
+
 }

@@ -2,6 +2,7 @@ package com.example.pushSlave.pushSlave.controller.impl;
 
 import com.example.pushSlave.pushSlave.controller.IController;
 import com.example.pushSlave.pushSlave.event.impl.BasicEvent;
+import com.example.pushSlave.pushSlave.event.impl.VolumeEvent;
 import com.example.pushSlave.pushSlave.service.Servicable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,5 +36,12 @@ public class BasicController implements IController {
     public String pushEvent( @RequestBody BasicEvent event) {
 
        return  service.processEvent(event);
+    }
+
+
+    @RequestMapping("/changeVolume")
+    @Override
+    public String changeVolume(VolumeEvent volumeEvent) {
+        return  service.changeVolume(volumeEvent);
     }
 }

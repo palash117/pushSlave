@@ -1,5 +1,7 @@
 package com.example.pushSlave.pushSlave;
 
+import com.example.pushSlave.pushSlave.operator.UbuntuSystemOperator;
+import com.example.pushSlave.pushSlave.event.impl.VolumeEvent;
 import com.example.pushSlave.pushSlave.Request.Consumer;
 import com.example.pushSlave.pushSlave.pushConstants.PushConstants;
 import com.example.pushSlave.pushSlave.pushUtil.RestUtil;
@@ -12,6 +14,9 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+
+
+import java.io.IOException;
 
 @SpringBootApplication
 public class PushSlaveApplication {
@@ -42,6 +47,7 @@ public class PushSlaveApplication {
 		} catch (UnknownHostException ex) {
 			ex.printStackTrace();
 		}
+/*runtimeTest2();*/
 
 	}
 
@@ -57,6 +63,18 @@ public class PushSlaveApplication {
 			}
 
 		} catch (IOException e) {
+			e.printStackTrace();
+
+		}
+	}
+
+	public static void runtimeTest2(){
+		try {
+			UbuntuSystemOperator ubuntuSystemOperator = new UbuntuSystemOperator();
+			VolumeEvent volumeEvent = new VolumeEvent(50);
+			ubuntuSystemOperator.increaseVolume(volumeEvent);
+
+		} catch (Exception e) {
 			e.printStackTrace();
 
 		}
