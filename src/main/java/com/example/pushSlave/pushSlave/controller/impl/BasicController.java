@@ -41,7 +41,16 @@ public class BasicController implements IController {
 
     @RequestMapping("/changeVolume")
     @Override
-    public String changeVolume(VolumeEvent volumeEvent) {
-        return  service.changeVolume(volumeEvent);
+    public String changeVolume(@RequestBody VolumeEvent volumeEvent) {
+        try{
+
+            System.out.println(volumeEvent.toString());
+            return  service.changeVolume(volumeEvent);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return "ok";
     }
 }

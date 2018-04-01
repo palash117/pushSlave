@@ -23,5 +23,12 @@ public class VolumeEvent extends BasicEvent {
     public void setVolumePercentage(int volumePercentage) {
         this.volumePercentage = volumePercentage;
     }
+
+    @Override
+    public String toString() {
+        return "VolumeEvent{" +
+                "volumePercentage=" + volumePercentage +
+                '}';
+    }
 }
 
